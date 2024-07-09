@@ -8,7 +8,7 @@ public class CoinStatusChecker : MonoBehaviour
 
     private bool touchedGround = false;
     private const float yPosCriterionOfFallenOver = 1f;
-    private const float waitingSeconds = 10f;
+    [SerializeField] private float waitingSeconds = 15f;
     Transform tr;
 
     private void Awake()

@@ -10,12 +10,11 @@ public class CoinGenerator : MonoBehaviour
     [SerializeField] private int row = 20;
     [SerializeField] private int col = 20;
     [SerializeField] private float gap = 50f;
+    [SerializeField] private float coinInitYPos = 190f;
 
     private void Start()
     {
        coinCounter = GetComponent<CoinCounter>();
-
-        GenerateCoinsInGridByCurSetting();
     }
 
     public void GenerateCoinsInGrid(int row, int col, float gap)
@@ -24,7 +23,7 @@ public class CoinGenerator : MonoBehaviour
         {
             for (int j = 0; j < row; j++)
             {
-                Vector3 coinLocation = new Vector3(i * gap, 10f, j * gap);
+                Vector3 coinLocation = new Vector3(i * gap, coinInitYPos, j * gap);
                 coinList.Add(Instantiate(coin, coinLocation, Quaternion.identity)) ;
             }
         }
