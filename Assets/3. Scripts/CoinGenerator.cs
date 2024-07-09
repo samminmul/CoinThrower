@@ -5,13 +5,17 @@ using UnityEngine;
 public class CoinGenerator : MonoBehaviour
 {
     [SerializeField] GameObject coin;
+    List<GameObject> coinList = new List<GameObject>();
     CoinCounter coinCounter;
+    [SerializeField] private int row = 20;
+    [SerializeField] private int col = 20;
+    [SerializeField] private float gap = 50f;
 
     private void Start()
     {
        coinCounter = GetComponent<CoinCounter>();
 
-        GenerateCoinsInGrid(20, 20, 50f);
+        GenerateCoinsInGridByCurSetting();
     }
 
     public void GenerateCoinsInGrid(int row, int col, float gap)
@@ -21,9 +25,23 @@ public class CoinGenerator : MonoBehaviour
             for (int j = 0; j < row; j++)
             {
                 Vector3 coinLocation = new Vector3(i * gap, 10f, j * gap);
-                Instantiate(coin, coinLocation, Quaternion.identity);
+                coinList.Add(Instantiate(coin, coinLocation, Quaternion.identity)) ;
             }
         }
         coinCounter.AddThrownCoinsCount(row * col);
+    }
+
+    public void GenerateCoinsInGridByCurSetting()
+    {
+        GenerateCoinsInGrid(row, col, gap);
+    }
+
+    public void DestroyAllCoins()
+    {
+        foreach (GameObject coin in coinList)
+        {
+            Destroy(coin);
+        }
+        coinList.Clear();
     }
 }

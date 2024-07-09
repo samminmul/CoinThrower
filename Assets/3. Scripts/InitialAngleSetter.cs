@@ -10,7 +10,6 @@ public class InitialAngleSetter : MonoBehaviour
     void Awake()
     {
         tr = GetComponent<Transform>();
-
         initX = Random.Range(0f, 360f);
         initY = Random.Range(0f, 360f);
         initZ = Random.Range(0f, 360f);
