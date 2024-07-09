@@ -10,10 +10,12 @@ public class CoinStatusChecker : MonoBehaviour
     private const float yPosCriterionOfFallenOver = 1f;
     [SerializeField] private float waitingSeconds = 15f;
     Transform tr;
+    Rigidbody rb;
 
     private void Awake()
     {
         tr = GetComponent<Transform>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -23,7 +25,8 @@ public class CoinStatusChecker : MonoBehaviour
             case "Ground":
                 if (!touchedGround)
                 {
-                    StartCoroutine(IsFallenOver());
+                    rb.velocity = Vector3.zero;
+                    StartCoroutine(FallenOverCheck());
                     touchedGround = true;
                     Debug.Log("touched");
                 }
@@ -31,7 +34,7 @@ public class CoinStatusChecker : MonoBehaviour
         }
     }
 
-    IEnumerator IsFallenOver()
+    IEnumerator FallenOverCheck()
     {
         yield return new WaitForSeconds(waitingSeconds);
         isFallenOver = (tr.position.y < yPosCriterionOfFallenOver);
