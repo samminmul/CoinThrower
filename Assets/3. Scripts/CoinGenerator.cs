@@ -24,7 +24,7 @@ public class CoinGenerator : MonoBehaviour
             for (int j = 0; j < row; j++)
             {
                 Vector3 coinLocation = new Vector3(i * gap, coinInitYPos, j * gap);
-                coinList.Add(Instantiate(coin, coinLocation, Quaternion.identity)) ;
+                coinList.Add(Instantiate(coin, coinLocation, Random.rotationUniform)) ;
             }
         }
         coinCounter.AddThrownCoinsCount(row * col);

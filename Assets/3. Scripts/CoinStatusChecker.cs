@@ -44,9 +44,6 @@ public class CoinStatusChecker : MonoBehaviour
         {
             CoinCounter coinCounter = FindObjectOfType<CoinCounter>();
             coinCounter.AddFallenCoinsCount(1);
-
-            //InitialAngleSetter initialAngleSetter = GetComponent<InitialAngleSetter>();
-            //initialAngleSetter.PrintInitAngleLog();
         }
     }
 }
